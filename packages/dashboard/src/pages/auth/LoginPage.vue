@@ -2,8 +2,8 @@
   <q-page class='flex flex-center'>
     <q-card class='q-pa-md shadow-2' bordered>
       <q-card-section class='text-center'>
-        <div class='text-grey-9 text-h5 text-weight-bold'>Sign in</div>
-        <div class='text-grey-8'>Enter your email address and password to access admin panel.</div>
+        <div class='text-grey-9 text-h5 text-weight-bold'>{{ $t('auth.signIn') }}</div>
+        <div class='text-grey-8'>{{ $t('auth.signInDescription') }}</div>
       </q-card-section>
 
       <q-card-section v-if='showError'>
@@ -20,7 +20,7 @@
           <q-input
             filled
             v-model="form.username"
-            label="Username"
+            :label="$t('auth.username')"
             lazy-rules
             type='text'
           />
@@ -28,15 +28,15 @@
           <q-input
             filled
             v-model="form.password"
-            label="Password"
+            :label="$t('auth.password')"
             lazy-rules
             type='password'
           />
 
-          <q-toggle v-model="form.remind" label="Remember me" />
+          <q-toggle v-model="form.remind" :label="$t('auth.rememberMe')" />
 
           <div>
-            <q-btn :loading="loading" label="Sign in" type="submit" color="primary"/>
+            <q-btn :loading="loading" :label="$t('auth.signIn')" type="submit" color="primary"/>
           </div>
         </q-form>
       </q-card-section>

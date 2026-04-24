@@ -1,42 +1,42 @@
 <template>
   <q-list style="min-width: 100px">
     <q-item clickable v-close-popup @click="openObject">
-      <q-item-section>Open</q-item-section>
+      <q-item-section>{{ $t('contextMenu.open') }}</q-item-section>
     </q-item>
     <q-item clickable v-close-popup @click="downloadObject" v-if="prop.row.type === 'file'">
-      <q-item-section>Download</q-item-section>
+      <q-item-section>{{ $t('contextMenu.download') }}</q-item-section>
     </q-item>
     <q-item clickable v-close-popup @click="renameObject" v-if="prop.row.type === 'file'">
-      <q-item-section>Rename</q-item-section>
+      <q-item-section>{{ $t('contextMenu.rename') }}</q-item-section>
     </q-item>
     <q-item clickable v-close-popup @click="duplicateObject">
-      <q-item-section>Duplicate</q-item-section>
+      <q-item-section>{{ $t('contextMenu.duplicate') }}</q-item-section>
     </q-item>
     <q-item clickable v-close-popup @click="updateMetadataObject" v-if="prop.row.type === 'file'">
-      <q-item-section>Update Metadata</q-item-section>
+      <q-item-section>{{ $t('contextMenu.updateMetadata') }}</q-item-section>
     </q-item>
     <q-separator />
     <q-item clickable v-close-popup @click="createShareLink" v-if="prop.row.type === 'file'">
       <q-item-section>
-        <q-item-label>Create Share Link</q-item-label>
-        <q-item-label caption>Public link with optional password</q-item-label>
+        <q-item-label>{{ $t('contextMenu.createShareLink') }}</q-item-label>
+        <q-item-label caption>{{ $t('contextMenu.shareLinkCaption') }}</q-item-label>
       </q-item-section>
     </q-item>
     <q-item clickable v-close-popup @click="copyInternalLink">
       <q-item-section>
-        <q-item-label>Copy Internal Link</q-item-label>
-        <q-item-label caption>Link to view in dashboard</q-item-label>
+        <q-item-label>{{ $t('contextMenu.copyInternalLink') }}</q-item-label>
+        <q-item-label caption>{{ $t('contextMenu.internalLinkCaption') }}</q-item-label>
       </q-item-section>
     </q-item>
     <q-item clickable v-close-popup @click="copyPublicUrl" v-if="prop.row.type === 'file' && bucketPublicUrl">
       <q-item-section>
-        <q-item-label>Copy Public URL</q-item-label>
-        <q-item-label caption>Direct link via public domain</q-item-label>
+        <q-item-label>{{ $t('contextMenu.copyPublicUrl') }}</q-item-label>
+        <q-item-label caption>{{ $t('contextMenu.publicUrlCaption') }}</q-item-label>
       </q-item-section>
     </q-item>
     <q-separator />
     <q-item clickable v-close-popup @click="deleteObject">
-      <q-item-section>Delete</q-item-section>
+      <q-item-section>{{ $t('contextMenu.delete') }}</q-item-section>
     </q-item>
   </q-list>
 </template>
@@ -119,13 +119,13 @@ export default {
 			try {
 				await navigator.clipboard.writeText(url);
 				this.q.notify({
-					message: "Link to file copied to clipboard!",
+					message: this.$t("notifications.linkCopied"),
 					timeout: 5000,
 					type: "positive",
 				});
 			} catch (err) {
 				this.q.notify({
-					message: `Failed to copy: ${err}`,
+					message: this.$t("notifications.copyFailed", { error: err }),
 					timeout: 5000,
 					type: "negative",
 				});
@@ -138,13 +138,13 @@ export default {
 			try {
 				await navigator.clipboard.writeText(url);
 				this.q.notify({
-					message: "Public URL copied to clipboard!",
+					message: this.$t("notifications.publicUrlCopied"),
 					timeout: 5000,
 					type: "positive",
 				});
 			} catch (err) {
 				this.q.notify({
-					message: `Failed to copy: ${err}`,
+					message: this.$t("notifications.copyFailed", { error: err }),
 					timeout: 5000,
 					type: "negative",
 				});
@@ -169,7 +169,9 @@ export default {
 				URL.revokeObjectURL(url);
 			} catch (err) {
 				this.q.notify({
-					message: `Download failed: ${err.message || err}`,
+					message: this.$t("notifications.downloadFailed", {
+						error: err.message || err,
+					}),
 					timeout: 5000,
 					type: "negative",
 				});

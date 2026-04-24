@@ -1,0 +1,170 @@
+{
+	"app": {
+		"title": "R2-Explorer",
+		"loading": "加载中..."
+	},
+	"sidebar": {
+		"readOnly": "只读模式",
+		"new": "新建",
+		"newFile": "新建文件",
+		"newFolder": "新建文件夹",
+		"uploadFiles": "上传文件",
+		"uploadFolders": "上传文件夹",
+		"files": "文件",
+		"email": "邮件",
+		"info": "信息"
+	},
+	"info": {
+		"title": "感谢使用 R2-Explorer！",
+		"version": "您正在运行版本 {version}",
+		"updateAvailable": "最新版本是 {latest}，了解如何更新您的实例。",
+		"authentication": "认证",
+		"method": "方式",
+		"username": "用户名",
+		"notAuthenticated": "未认证",
+		"serverConfig": "服务器配置",
+		"ok": "确定"
+	},
+	"files": {
+		"name": "名称",
+		"lastModified": "最后修改",
+		"size": "大小",
+		"searchPlaceholder": "按前缀搜索...",
+		"emptyFolder": "此文件夹为空",
+		"loadingMore": "加载更多文件...",
+		"noMoreFiles": "没有更多文件",
+		"manageShares": "管理分享",
+		"manageSharesTooltip": "查看和管理所有分享链接"
+	},
+	"contextMenu": {
+		"open": "打开",
+		"download": "下载",
+		"rename": "重命名",
+		"duplicate": "复制",
+		"updateMetadata": "更新元数据",
+		"createShareLink": "创建分享链接",
+		"shareLinkCaption": "可选密码的公开链接",
+		"copyInternalLink": "复制内部链接",
+		"internalLinkCaption": "在仪表板中查看的链接",
+		"copyPublicUrl": "复制公开URL",
+		"publicUrlCaption": "通过公开域名的直接链接",
+		"delete": "删除"
+	},
+	"notifications": {
+		"linkCopied": "文件链接已复制到剪贴板！",
+		"publicUrlCopied": "公开URL已复制到剪贴板！",
+		"copyFailed": "复制失败：{error}",
+		"downloadFailed": "下载失败：{error}",
+		"fileRenamed": "文件已重命名！",
+		"fileUpdated": "文件已更新！",
+		"folderDeleted": "文件夹已删除！",
+		"fileDeleted": "文件已删除！",
+		"fileDuplicated": "文件已复制！",
+		"folderDuplicated": "文件夹已复制！",
+		"duplicatingFolder": "正在复制文件夹...",
+		"filesUploaded": "文件已上传！",
+		"shareLinkCreated": "分享链接已创建！",
+		"shareLinkRevoked": "分享链接已撤销",
+		"copiedToClipboard": "已复制到剪贴板！",
+		"updatingFile": "正在更新文件...",
+		"deletingFiles": "正在删除文件...",
+		"uploadingFiles": "正在上传文件 {current}/{total}..."
+	},
+	"dialogs": {
+		"newFolderName": "新文件夹名称",
+		"newFileName": "新文件名称",
+		"pleaseTypeSomething": "请输入内容",
+		"cancel": "取消",
+		"create": "创建",
+		"delete": "删除",
+		"rename": "重命名",
+		"confirmDeleteFile": "确定要删除文件 {name} 吗？",
+		"confirmDeleteFolder": "确定要删除文件夹 {name} 及其中的 {count} 个文件吗？",
+		"httpMetadata": "HTTP 元数据",
+		"customMetadata": "自定义元数据",
+		"key": "键",
+		"value": "值",
+		"updateMetadata": "更新元数据"
+	},
+	"share": {
+		"title": "分享文件",
+		"file": "文件：",
+		"expiresIn": "过期时间（小时，0=永不过期）",
+		"expiresInHint": "设为0创建永久链接",
+		"password": "密码（可选）",
+		"passwordHint": "留空则无密码保护",
+		"maxDownloads": "最大下载次数（可选）",
+		"maxDownloadsHint": "设为0则无下载限制",
+		"linkCreated": "分享链接已创建！",
+		"expires": "过期时间：",
+		"close": "关闭",
+		"createLink": "创建链接",
+		"manageTitle": "管理分享链接",
+		"columnFile": "文件",
+		"columnLink": "链接",
+		"columnStatus": "状态",
+		"columnDownloads": "下载",
+		"columnCreated": "创建时间",
+		"columnActions": "操作",
+		"statusExpired": "已过期",
+		"statusActive": "有效",
+		"revoke": "撤销",
+		"revokeConfirmTitle": "撤销分享链接",
+		"revokeConfirmMessage": "确定要撤销 \"{key}\" 的分享链接吗？",
+		"failedToLoad": "加载分享失败",
+		"failedToCreate": "创建分享链接失败",
+		"failedToRevoke": "撤销分享链接失败",
+		"copyTooltip": "复制到剪贴板"
+	},
+	"preview": {
+		"edit": "编辑",
+		"save": "保存",
+		"cancelEdit": "取消",
+		"editingWarning": "文件编辑功能仍在测试中！",
+		"unknownFileType": "未知文件类型，将以文本形式打开。",
+		"tooBigToPreview": "文件太大无法预览。",
+		"invalidContent": "内容不是有效的 {type} 格式。",
+		"browserAudioSupport": "您的浏览器不支持音频元素。",
+		"browserVideoSupport": "您的浏览器不支持视频标签。",
+		"emptyCsv": "空的CSV文件"
+	},
+	"upload": {
+		"dropFiles": "拖放文件上传",
+		"uploadingCount": "正在上传 {{ count }} 个文件"
+	},
+	"auth": {
+		"signIn": "登录",
+		"signInDescription": "输入您的邮箱地址和密码以访问管理面板。",
+		"username": "用户名",
+		"password": "密码",
+		"rememberMe": "记住我"
+	},
+	"errors": {
+		"404": "404",
+		"nothingHere": "哎呀，这里什么都没有...",
+		"goHome": "返回首页"
+	},
+	"bucket": {
+		"label": "存储桶"
+	},
+	"language": {
+		"switch": "语言",
+		"english": "英文",
+		"chinese": "中文"
+	},
+	"email": {
+		"back": "返回",
+		"markUnread": "标记为未读",
+		"markRead": "标记为已读",
+		"to": "收件人",
+		"attachments": "附件",
+		"noEmails": "此存储桶没有邮件",
+		"noMoreEmails": "没有更多邮件",
+		"markedUnread": "邮件已标记为未读！",
+		"markedRead": "邮件已标记为已读！",
+		"from": "发件人：",
+		"toLabel": "收件人：",
+		"noContent": "此邮件没有HTML或文本内容",
+		"attachmentCount": "此邮件有 {{ count }} 个附件："
+	}
+}

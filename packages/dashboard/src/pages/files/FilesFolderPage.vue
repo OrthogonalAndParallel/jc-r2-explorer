@@ -9,7 +9,7 @@
           dense
           outlined
           v-model="searchQuery"
-          placeholder="Search by prefix..."
+          :placeholder="$t('files.searchPlaceholder')"
           clearable
           class="q-mr-sm"
           style="width: 200px"
@@ -25,10 +25,10 @@
           dense
           icon="link"
           color="primary"
-          label="Manage Shares"
+          :label="$t('files.manageShares')"
           @click="$refs.shareFile.openManageShares()"
         >
-          <q-tooltip>View and manage all share links</q-tooltip>
+          <q-tooltip>{{ $t('files.manageSharesTooltip') }}</q-tooltip>
         </q-btn>
       </div>
 
@@ -62,7 +62,7 @@
 
           <template v-slot:no-data>
             <div class="full-width q-my-lg" v-if="!loading">
-              <h6 class="flex items-center justify-center"><q-icon name="folder" color="orange" size="lg" />This folder is empty</h6>
+              <h6 class="flex items-center justify-center"><q-icon name="folder" color="orange" size="lg" />{{ $t('files.emptyFolder') }}</h6>
             </div>
           </template>
 
@@ -98,11 +98,11 @@
 
         <div v-if="loadingMore" class="q-pa-md text-center">
           <q-spinner color="primary" size="md" />
-          <div class="q-mt-sm text-grey">Loading more files...</div>
+          <div class="q-mt-sm text-grey">{{ $t('files.loadingMore') }}</div>
         </div>
 
         <div v-if="!hasMore && rows.length > 0 && !loading" class="q-pa-md text-center text-grey">
-          No more files to load
+          {{ $t('files.noMoreFiles') }}
         </div>
 
       </drag-and-drop>
@@ -124,6 +124,7 @@ import FileContextMenu from "pages/files/FileContextMenu.vue";
 import { useQuasar } from "quasar";
 import { useMainStore } from "stores/main-store";
 import { defineComponent } from "vue";
+import { useI18n } from "vue-i18n";
 import { ROOT_FOLDER, apiHandler, decode, encode } from "../../appUtils";
 
 export default defineComponent({
@@ -142,59 +143,6 @@ export default defineComponent({
 		cursor: null,
 		hasMore: true,
 		searchQuery: "",
-		columns: [
-			{
-				name: "name",
-				required: true,
-				label: "Name",
-				align: "left",
-				field: "name",
-				sortable: true,
-				sort: (a, b, rowA, rowB) => {
-					if (rowA.type === "folder") {
-						if (rowB.type === "folder") {
-							// both are folders
-							return a.localeCompare(b);
-						}
-						// only first is folder
-						return 1;
-					}
-					if (rowB.type === "folder") {
-						// only second is folder
-						return -1;
-					}
-					// none is folder
-					return a.localeCompare(b);
-				},
-			},
-			{
-				name: "lastModified",
-				required: true,
-				label: "Last Modified",
-				align: "left",
-				field: "lastModified",
-				sortable: true,
-				sort: (a, b, rowA, rowB) => {
-					return rowA.timestamp - rowB.timestamp;
-				},
-			},
-			{
-				name: "size",
-				required: true,
-				label: "Size",
-				align: "left",
-				field: "size",
-				sortable: true,
-				sort: (a, b, rowA, rowB) => {
-					return rowA.sizeRaw - rowB.sizeRaw;
-				},
-			},
-			{
-				name: "options",
-				label: "",
-				sortable: false,
-			},
-		],
 	}),
 	computed: {
 		selectedBucket: function () {
@@ -237,6 +185,58 @@ export default defineComponent({
 				{
 					name: this.selectedBucket,
 					path: "/",
+				},
+			];
+		},
+		columns: () => {
+			const { t } = useI18n();
+			return [
+				{
+					name: "name",
+					required: true,
+					label: t("files.name"),
+					align: "left",
+					field: "name",
+					sortable: true,
+					sort: (a, b, rowA, rowB) => {
+						if (rowA.type === "folder") {
+							if (rowB.type === "folder") {
+								return a.localeCompare(b);
+							}
+							return 1;
+						}
+						if (rowB.type === "folder") {
+							return -1;
+						}
+						return a.localeCompare(b);
+					},
+				},
+				{
+					name: "lastModified",
+					required: true,
+					label: t("files.lastModified"),
+					align: "left",
+					field: "lastModified",
+					sortable: true,
+					sort: (a, b, rowA, rowB) => {
+						return rowA.timestamp - rowB.timestamp;
+					},
+				},
+				{
+					name: "size",
+					required: true,
+					label: t("files.size"),
+					align: "left",
+					field: "size",
+					sortable: true,
+					sort: (a, b, rowA, rowB) => {
+						return rowA.sizeRaw - rowB.sizeRaw;
+					},
+				},
+				{
+					name: "options",
+					label: "",
+					sortable: false,
 				},
 			];
 		},

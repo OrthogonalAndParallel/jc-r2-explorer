@@ -1,0 +1,170 @@
+{
+	"app": {
+		"title": "R2-Explorer",
+		"loading": "Loading..."
+	},
+	"sidebar": {
+		"readOnly": "Read only",
+		"new": "New",
+		"newFile": "New File",
+		"newFolder": "New Folder",
+		"uploadFiles": "Upload Files",
+		"uploadFolders": "Upload Folders",
+		"files": "Files",
+		"email": "Email",
+		"info": "Info"
+	},
+	"info": {
+		"title": "Thank you for using R2-Explorer!",
+		"version": "You are running version {version}",
+		"updateAvailable": "Latest version is {latest}, learn how to update your instance here.",
+		"authentication": "Authentication",
+		"method": "Method",
+		"username": "Username",
+		"notAuthenticated": "Not authenticated",
+		"serverConfig": "Server Configuration",
+		"ok": "OK"
+	},
+	"files": {
+		"name": "Name",
+		"lastModified": "Last Modified",
+		"size": "Size",
+		"searchPlaceholder": "Search by prefix...",
+		"emptyFolder": "This folder is empty",
+		"loadingMore": "Loading more files...",
+		"noMoreFiles": "No more files to load",
+		"manageShares": "Manage Shares",
+		"manageSharesTooltip": "View and manage all share links"
+	},
+	"contextMenu": {
+		"open": "Open",
+		"download": "Download",
+		"rename": "Rename",
+		"duplicate": "Duplicate",
+		"updateMetadata": "Update Metadata",
+		"createShareLink": "Create Share Link",
+		"shareLinkCaption": "Public link with optional password",
+		"copyInternalLink": "Copy Internal Link",
+		"internalLinkCaption": "Link to view in dashboard",
+		"copyPublicUrl": "Copy Public URL",
+		"publicUrlCaption": "Direct link via public domain",
+		"delete": "Delete"
+	},
+	"notifications": {
+		"linkCopied": "Link to file copied to clipboard!",
+		"publicUrlCopied": "Public URL copied to clipboard!",
+		"copyFailed": "Failed to copy: {error}",
+		"downloadFailed": "Download failed: {error}",
+		"fileRenamed": "File renamed!",
+		"fileUpdated": "File Updated!",
+		"folderDeleted": "Folder deleted!",
+		"fileDeleted": "File deleted!",
+		"fileDuplicated": "File duplicated!",
+		"folderDuplicated": "Folder duplicated!",
+		"duplicatingFolder": "Duplicating folder...",
+		"filesUploaded": "Files Uploaded!",
+		"shareLinkCreated": "Share link created!",
+		"shareLinkRevoked": "Share link revoked",
+		"copiedToClipboard": "Copied to clipboard!",
+		"updatingFile": "Updating file...",
+		"deletingFiles": "Deleting files...",
+		"uploadingFiles": "Uploading files {current}/{total}..."
+	},
+	"dialogs": {
+		"newFolderName": "New Folder Name",
+		"newFileName": "New File Name",
+		"pleaseTypeSomething": "Please type something",
+		"cancel": "Cancel",
+		"create": "Create",
+		"delete": "Delete",
+		"rename": "Rename",
+		"confirmDeleteFile": "Are you sure you want to delete the file {name}?",
+		"confirmDeleteFolder": "Are you sure you want to delete the folder {name}, and {count} files inside?",
+		"httpMetadata": "HTTP Metadata",
+		"customMetadata": "Custom Metadata",
+		"key": "Key",
+		"value": "Value",
+		"updateMetadata": "Update Metadata"
+	},
+	"share": {
+		"title": "Share File",
+		"file": "File:",
+		"expiresIn": "Expires in (hours, 0 = never)",
+		"expiresInHint": "Leave as 0 for permanent link",
+		"password": "Password (optional)",
+		"passwordHint": "Leave empty for no password protection",
+		"maxDownloads": "Max Downloads (optional)",
+		"maxDownloadsHint": "Leave as 0 for unlimited downloads",
+		"linkCreated": "Share Link Created!",
+		"expires": "Expires:",
+		"close": "Close",
+		"createLink": "Create Link",
+		"manageTitle": "Manage Share Links",
+		"columnFile": "File",
+		"columnLink": "Link",
+		"columnStatus": "Status",
+		"columnDownloads": "Downloads",
+		"columnCreated": "Created",
+		"columnActions": "Actions",
+		"statusExpired": "Expired",
+		"statusActive": "Active",
+		"revoke": "Revoke",
+		"revokeConfirmTitle": "Revoke Share Link",
+		"revokeConfirmMessage": "Are you sure you want to revoke this share link for \"{key}\"?",
+		"failedToLoad": "Failed to load shares",
+		"failedToCreate": "Failed to create share link",
+		"failedToRevoke": "Failed to revoke share link",
+		"copyTooltip": "Copy to clipboard"
+	},
+	"preview": {
+		"edit": "edit",
+		"save": "Save",
+		"cancelEdit": "Cancel",
+		"editingWarning": "File editing is still in tests!",
+		"unknownFileType": "This is an unknown file type, opening as text.",
+		"tooBigToPreview": "File is too big to preview.",
+		"invalidContent": "Content is not valid {type}.",
+		"browserAudioSupport": "Your browser does not support the audio element.",
+		"browserVideoSupport": "Your browser does not support the video tag.",
+		"emptyCsv": "Empty csv"
+	},
+	"upload": {
+		"dropFiles": "Drop files to upload",
+		"uploadingCount": "Uploading {{ count }} files"
+	},
+	"auth": {
+		"signIn": "Sign in",
+		"signInDescription": "Enter your email address and password to access admin panel.",
+		"username": "Username",
+		"password": "Password",
+		"rememberMe": "Remember me"
+	},
+	"errors": {
+		"404": "404",
+		"nothingHere": "Oops. Nothing here...",
+		"goHome": "Go Home"
+	},
+	"bucket": {
+		"label": "Bucket"
+	},
+	"language": {
+		"switch": "Language",
+		"english": "English",
+		"chinese": "Chinese"
+	},
+	"email": {
+		"back": "Back",
+		"markUnread": "Mark email as unread",
+		"markRead": "Mark email as read",
+		"to": "to",
+		"attachments": "Attachments",
+		"noEmails": "This bucket doesn't have Emails",
+		"noMoreEmails": "No more emails to load",
+		"markedUnread": "Email marked as unread!",
+		"markedRead": "Email marked as read!",
+		"from": "From:",
+		"toLabel": "To:",
+		"noContent": "This email has no HTML or text content",
+		"attachmentCount": "This email has {{ count }} attachment(s):"
+	}
+}

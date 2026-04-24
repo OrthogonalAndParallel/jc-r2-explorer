@@ -15,10 +15,10 @@
 <!--            </q-btn>-->
             <template v-if="fileHead">
               <q-btn push icon="mark_email_unread" @click="markAsUnread" v-if="fileHead.customMetadata.read === 'true'">
-                <q-tooltip>Mark email as unread</q-tooltip>
+                <q-tooltip>{{ $t('email.markUnread') }}</q-tooltip>
               </q-btn>
               <q-btn push icon="mark_email_read" @click="markAsRead" v-else>
-                <q-tooltip>Mark email as read</q-tooltip>
+                <q-tooltip>{{ $t('email.markRead') }}</q-tooltip>
               </q-btn>
             </template>
           </q-btn-group>
@@ -33,7 +33,7 @@
           <q-icon name="account_circle" size="xl" class="q-mr-sm"/>
           <div class="d-flex column">
             <span>{{ file.from.name }} <small class="text-muted">&lt;{{ file.from.address }}></small></span>
-            <span>to {{ file.to[0].address }}</span>
+            <span>{{ $t('email.to') }} {{ file.to[0].address }}</span>
           </div>
         </div>
 
@@ -58,7 +58,7 @@
 
       <q-card-actions vertical v-if="attachments.length > 0">
         <q-separator/>
-        <h6 class="q-my-md">Attachments</h6>
+        <h6 class="q-my-md">{{ $t('email.attachments') }}</h6>
 
         <div class="row attachments">
             <div v-for="attachment of file.attachments" class="col-md-4 col-sm-12" :key="attachment.filename">
@@ -233,7 +233,7 @@ export default defineComponent({
 				group: false,
 				icon: "done", // we add an icon
 				spinner: false, // we reset the spinner setting so the icon can be displayed
-				message: "Email marked as unread!",
+				message: this.$t("email.markedUnread"),
 				timeout: 2500, // we will timeout it in 2.5s
 			});
 		},
@@ -251,7 +251,7 @@ export default defineComponent({
 				group: false,
 				icon: "done", // we add an icon
 				spinner: false, // we reset the spinner setting so the icon can be displayed
-				message: "Email marked as read!",
+				message: this.$t("email.markedRead"),
 				timeout: 2500, // we will timeout it in 2.5s
 			});
 		},

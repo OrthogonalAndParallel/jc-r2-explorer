@@ -59,6 +59,9 @@ importers:
       vue:
         specifier: ^3.3.11
         version: 3.5.13(typescript@5.9.3)
+      vue-i18n:
+        specifier: ^11.4.0
+        version: 11.4.0(vue@3.5.13(typescript@5.9.3))
       vue-router:
         specifier: ^4.2.5
         version: 4.5.0(vue@3.5.13(typescript@5.9.3))
@@ -153,6 +156,16 @@ importers:
     devDependencies:
       wrangler:
         specifier: ^4.52.1
+        version: 4.52.1(@cloudflare/workers-types@4.20251128.0)
+
+  template:
+    dependencies:
+      r2-explorer:
+        specifier: ^1.1.0
+        version: 1.2.0(hono@4.10.7)
+    devDependencies:
+      wrangler:
+        specifier: ^4.7.2
         version: 4.52.1(@cloudflare/workers-types@4.20251128.0)
 
 packages:
@@ -1534,6 +1547,22 @@ packages:
     peerDependenciesMeta:
       '@types/node':
         optional: true
+
+  '@intlify/core-base@11.4.0':
+    resolution: {integrity: sha512-nlxFOnmjJgVkL1PsuSMagyh3qIHTwc2KlO2R3qQQV1ydrcwh1XpM7opWUGqvGaLlktttopDzbLBpr/k5tvbNmA==}
+    engines: {node: '>= 16'}
+
+  '@intlify/devtools-types@11.4.0':
+    resolution: {integrity: sha512-LtQ04kG8/2Nv6AbuINpkjODuhKHdd+MGLlXKW3I0GTCeDsDIBZUot82nnyK7D6+qersF08FqSvoN/eGPcL3c7Q==}
+    engines: {node: '>= 16'}
+
+  '@intlify/message-compiler@11.4.0':
+    resolution: {integrity: sha512-v455gVZqMb0er63Wd/akX8DXTnwSubgrgQaRigLB60V3xpnq3B99oPvGXW+N4G/5QFt8Ls84FJ8qHJUVnRCs1A==}
+    engines: {node: '>= 16'}
+
+  '@intlify/shared@11.4.0':
+    resolution: {integrity: sha512-r9qUeLeO0TMZmUZ+mXS6IGQ6xwzZJaVMK6j4CdoA3eQP8xp3JtCfwkZ30gB4+knlN40pmBdDXgx85SWhMCzHng==}
+    engines: {node: '>= 16'}
 
   '@isaacs/cliui@8.0.2':
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
@@ -4292,6 +4321,9 @@ packages:
     resolution: {integrity: sha512-WuyALRjWPDGtt/wzJiadO5AXY+8hZ80hVpe6MyivgraREW751X3SbhRvG3eLKOYN+8VEvqLcf3wdnt44Z4S4SA==}
     engines: {node: '>=10'}
 
+  r2-explorer@1.2.0:
+    resolution: {integrity: sha512-x9MKwkGLoOsxDBFj8khp1JhARUSh8lzoFiQuslvsJF3Jcmi7ftlg5k9kk5NW1E8VlApZThkY+OXUc5p3tB/xkQ==}
+
   randombytes@2.1.0:
     resolution: {integrity: sha512-vYl3iOX+4CKUWuxGi9Ukhie6fsqXqS9FE2Zaic4tNFD2N2QQaXOMFbuKK4QmDHC0JO6B1Zp41J0LpT0oR68amQ==}
 
@@ -5032,6 +5064,12 @@ packages:
     peerDependenciesMeta:
       '@vue/composition-api':
         optional: true
+
+  vue-i18n@11.4.0:
+    resolution: {integrity: sha512-gxLVtcwdvOgwKSzkdb7nHKlW0N85A6aDNmHLnq6V+3w2/BXy/os5l71P7TIlgIQTxX0zJjiz89iImoHi51GieQ==}
+    engines: {node: '>= 16'}
+    peerDependencies:
+      vue: ^3.0.0
 
   vue-resize-sensor@2.0.0:
     resolution: {integrity: sha512-W+y2EAI/BxS4Vlcca9scQv8ifeBFck56DRtSwWJ2H4Cw1GLNUYxiZxUHHkuzuI5JPW/cYtL1bPO5xPyEXx4LmQ==}
@@ -6266,6 +6304,24 @@ snapshots:
       iconv-lite: 0.7.2
     optionalDependencies:
       '@types/node': 24.10.1
+
+  '@intlify/core-base@11.4.0':
+    dependencies:
+      '@intlify/devtools-types': 11.4.0
+      '@intlify/message-compiler': 11.4.0
+      '@intlify/shared': 11.4.0
+
+  '@intlify/devtools-types@11.4.0':
+    dependencies:
+      '@intlify/core-base': 11.4.0
+      '@intlify/shared': 11.4.0
+
+  '@intlify/message-compiler@11.4.0':
+    dependencies:
+      '@intlify/shared': 11.4.0
+      source-map-js: 1.2.1
+
+  '@intlify/shared@11.4.0': {}
 
   '@isaacs/cliui@8.0.2':
     dependencies:
@@ -9045,6 +9101,15 @@ snapshots:
 
   quick-lru@5.1.1: {}
 
+  r2-explorer@1.2.0(hono@4.10.7):
+    dependencies:
+      '@hono/cloudflare-access': 0.3.1(hono@4.10.7)
+      chanfana: 2.8.3
+      postal-mime: 2.6.1
+      zod: 3.25.76
+    transitivePeerDependencies:
+      - hono
+
   randombytes@2.1.0:
     dependencies:
       safe-buffer: 5.2.1
@@ -9888,6 +9953,14 @@ snapshots:
 
   vue-demi@0.14.10(vue@3.5.13(typescript@5.9.3)):
     dependencies:
+      vue: 3.5.13(typescript@5.9.3)
+
+  vue-i18n@11.4.0(vue@3.5.13(typescript@5.9.3)):
+    dependencies:
+      '@intlify/core-base': 11.4.0
+      '@intlify/devtools-types': 11.4.0
+      '@intlify/shared': 11.4.0
+      '@vue/devtools-api': 6.6.4
       vue: 3.5.13(typescript@5.9.3)
 
   vue-resize-sensor@2.0.0: {}

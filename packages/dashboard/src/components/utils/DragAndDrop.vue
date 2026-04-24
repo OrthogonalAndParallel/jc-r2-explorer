@@ -10,7 +10,7 @@
     <slot></slot>
     <div class="drop-files">
       <div class="box">
-        <h3>Drop files to upload</h3>
+        <h3>{{ $t('upload.dropFiles') }}</h3>
         <span class="font-28"><i class="bi bi-cloud-upload-fill"></i></span>
       </div>
     </div>
@@ -139,7 +139,10 @@ export default {
 			const notif = this.q.notify({
 				group: false,
 				spinner: true,
-				message: `Uploading files 1/${filenames.length}...`,
+				message: this.$t("notifications.uploadingFiles", {
+					current: 1,
+					total: filenames.length,
+				}),
 				caption: "0%",
 				timeout: 0,
 			});
@@ -162,7 +165,10 @@ export default {
 
 					// Update notification with current file count
 					notif({
-						message: `Uploading files ${uploadCount}/${filenames.length}...`,
+						message: this.$t("notifications.uploadingFiles", {
+							current: uploadCount,
+							total: filenames.length,
+						}),
 					});
 
 					const key = targetFolder + file.name;
@@ -246,7 +252,7 @@ export default {
 				icon: "done", // we add an icon
 				spinner: false, // we reset the spinner setting so the icon can be displayed
 				caption: "100%",
-				message: "Files Uploaded!",
+				message: this.$t("notifications.filesUploaded"),
 				timeout: 5000, // we will timeout it in 5s
 			});
 

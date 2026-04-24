@@ -5,18 +5,18 @@
         @submit="onSubmit"
       >
         <q-card-section>
-          <div class="text-h6">New Folder Name</div>
+          <div class="text-h6">{{ $t('dialogs.newFolderName') }}</div>
         </q-card-section>
 
         <q-card-section class="q-pt-none">
           <q-input dense v-model="newFolderName" autofocus
                    lazy-rules
-                   :rules="[ val => val && val.length > 0 || 'Please type something']" />
+                   :rules="[ val => val && val.length > 0 || $t('dialogs.pleaseTypeSomething')]" />
         </q-card-section>
 
         <q-card-actions align="right" class="text-primary">
-          <q-btn flat label="Cancel" v-close-popup />
-          <q-btn flat label="Create" type="submit" :loading="loading" />
+          <q-btn flat :label="$t('dialogs.cancel')" v-close-popup />
+          <q-btn flat :label="$t('dialogs.create')" type="submit" :loading="loading" />
         </q-card-actions>
       </q-form>
     </q-card>
