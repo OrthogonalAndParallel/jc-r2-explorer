@@ -1,14 +1,15 @@
 {
-	"name": "r2-explorer",
+	"name": "r2-explorer-template",
 	"version": "1.0.0",
 	"private": true,
+	"description": "Template project for R2-Explorer deployment",
 	"scripts": {
 		"deploy": "wrangler deploy",
 		"dev": "wrangler dev",
 		"start": "wrangler dev"
 	},
 	"dependencies": {
-		"r2-explorer": "^1.1.0"
+		"r2-explorer": "^1.2.0"
 	},
 	"devDependencies": {
 		"wrangler": "^4.7.2"
