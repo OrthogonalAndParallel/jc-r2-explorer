@@ -7,7 +7,7 @@ test.describe("App loads", () => {
 
 		// Header with app title should be visible
 		await expect(
-			page.locator(".q-toolbar").locator("text=R2-Explorer"),
+			page.locator(".q-toolbar").locator("text=ZenYou Cloud Drive"),
 		).toBeVisible({
 			timeout: 10_000,
 		});
