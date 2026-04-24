@@ -43,6 +43,7 @@ export async function mountWithContext<T extends Component>(
 					on: vi.fn(),
 					off: vi.fn(),
 				},
+				$t: (key: string) => key,
 				...(globalOverrides?.mocks ?? {}),
 			},
 			stubs: {

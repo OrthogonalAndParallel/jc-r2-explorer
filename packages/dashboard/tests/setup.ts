@@ -2,6 +2,15 @@ import { beforeEach, vi } from "vitest";
 import { config } from "@vue/test-utils";
 import { createPinia, setActivePinia } from "pinia";
 
+// Mock vue-i18n — provide useI18n that returns a mock $t function
+vi.mock("vue-i18n", () => ({
+	useI18n: () => ({
+		t: (key: string) => key,
+		locale: { value: "en" },
+	}),
+	createI18n: vi.fn(),
+}));
+
 // Mock quasar — avoid importing the full framework, provide only what components need
 vi.mock("quasar", () => ({
 	useQuasar: () => ({
@@ -12,6 +21,9 @@ vi.mock("quasar", () => ({
 		emit = vi.fn();
 		on = vi.fn();
 		off = vi.fn();
+	},
+	Lang: {
+		set: vi.fn(),
 	},
 }));
 
@@ -93,12 +105,14 @@ config.global.directives = {
 };
 
 // Provide a mock $bus (EventBus) for components that use this.$bus
+// Provide a mock $t for i18n — returns the key itself so tests can verify text
 config.global.mocks = {
 	$bus: {
 		emit: vi.fn(),
 		on: vi.fn(),
 		off: vi.fn(),
 	},
+	$t: (key: string) => key,
 };
 
 // Initialize Pinia immediately so top-level store imports work during collection

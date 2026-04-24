@@ -13,7 +13,7 @@ describe("Topbar", () => {
 			initialRoute: "/my-bucket/files",
 		});
 
-		expect(wrapper.text()).toContain("R2-Explorer");
+		expect(wrapper.text()).toContain("app.title");
 	});
 
 	it("hides BucketPicker when only 1 bucket", async () => {

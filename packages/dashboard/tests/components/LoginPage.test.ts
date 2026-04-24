@@ -15,7 +15,7 @@ describe("LoginPage", () => {
 			initialRoute: "/auth/login",
 		});
 
-		expect(wrapper.text()).toContain("Sign in");
+		expect(wrapper.text()).toContain("auth.signIn");
 	});
 
 	it("has remember me toggle defaulting to true", async () => {

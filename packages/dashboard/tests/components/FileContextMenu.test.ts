@@ -36,12 +36,12 @@ describe("FileContextMenu", () => {
 		});
 
 		const text = wrapper.text();
-		expect(text).toContain("Open");
-		expect(text).toContain("Download");
-		expect(text).toContain("Rename");
-		expect(text).toContain("Update Metadata");
-		expect(text).toContain("Delete");
-		expect(text).toContain("Create Share Link");
+		expect(text).toContain("contextMenu.open");
+		expect(text).toContain("contextMenu.download");
+		expect(text).toContain("contextMenu.rename");
+		expect(text).toContain("contextMenu.updateMetadata");
+		expect(text).toContain("contextMenu.delete");
+		expect(text).toContain("contextMenu.createShareLink");
 	});
 
 	it("hides file-only items for a folder", async () => {
@@ -51,12 +51,12 @@ describe("FileContextMenu", () => {
 		});
 
 		const text = wrapper.text();
-		expect(text).toContain("Open");
-		expect(text).toContain("Delete");
-		expect(text).not.toContain("Download");
-		expect(text).not.toContain("Rename");
-		expect(text).not.toContain("Update Metadata");
-		expect(text).not.toContain("Create Share Link");
+		expect(text).toContain("contextMenu.open");
+		expect(text).toContain("contextMenu.delete");
+		expect(text).not.toContain("contextMenu.download");
+		expect(text).not.toContain("contextMenu.rename");
+		expect(text).not.toContain("contextMenu.updateMetadata");
+		expect(text).not.toContain("contextMenu.createShareLink");
 	});
 
 	it("shows Copy Public URL when bucket has publicUrl", async () => {
@@ -71,7 +71,7 @@ describe("FileContextMenu", () => {
 		] as any;
 		await wrapper.vm.$nextTick();
 
-		expect(wrapper.text()).toContain("Copy Public URL");
+		expect(wrapper.text()).toContain("contextMenu.copyPublicUrl");
 	});
 
 	it("hides Copy Public URL when no publicUrl", async () => {
@@ -84,7 +84,7 @@ describe("FileContextMenu", () => {
 		store.buckets = [{ name: "my-bucket" }] as any;
 		await wrapper.vm.$nextTick();
 
-		expect(wrapper.text()).not.toContain("Copy Public URL");
+		expect(wrapper.text()).not.toContain("contextMenu.copyPublicUrl");
 	});
 
 	it("emits openObject when Open is clicked", async () => {
@@ -93,9 +93,9 @@ describe("FileContextMenu", () => {
 			initialRoute: "/my-bucket/files",
 		});
 
-		// Find the QItem stub containing "Open" and click it
+		// Find the QItem stub containing the open key and click it
 		const items = wrapper.findAllComponents({ name: "QItem" });
-		const openItem = items.find((i) => i.text().includes("Open"));
+		const openItem = items.find((i) => i.text().includes("contextMenu.open"));
 		await openItem!.trigger("click");
 
 		expect(wrapper.emitted("openObject")).toBeTruthy();
@@ -108,7 +108,7 @@ describe("FileContextMenu", () => {
 		});
 
 		const items = wrapper.findAllComponents({ name: "QItem" });
-		const deleteItem = items.find((i) => i.text().includes("Delete"));
+		const deleteItem = items.find((i) => i.text().includes("contextMenu.delete"));
 		await deleteItem!.trigger("click");
 
 		expect(wrapper.emitted("deleteObject")).toBeTruthy();

@@ -157,7 +157,9 @@ describe("Bucket Endpoints", () => {
 			const request = createTestRequest("/api/buckets/NON_EXISTENT_BUCKET");
 			const response = await app.fetch(request, env, createExecutionContext());
 			expect(response.status).toBe(500);
-			expect(await response.text()).toBe("Bucket binding not found: NON_EXISTENT_BUCKET");
+			expect(await response.text()).toBe(
+				"Bucket binding not found: NON_EXISTENT_BUCKET",
+			);
 		});
 	});
 
