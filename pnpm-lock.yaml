@@ -161,7 +161,7 @@ importers:
   template:
     dependencies:
       r2-explorer:
-        specifier: ^1.1.0
+        specifier: ^1.2.0
         version: 1.2.0(hono@4.10.7)
     devDependencies:
       wrangler:
