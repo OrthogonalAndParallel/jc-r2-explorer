@@ -2,7 +2,10 @@ name: Deploy
 
 on:
   workflow_dispatch:
-  push:
+  workflow_run:
+    workflows: ["Build"]
+    types:
+      - completed
     branches:
       - main
 
@@ -10,13 +13,24 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     name: Deploy
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - uses: actions/checkout@v6
+
+      - name: Download build artifact
+        uses: actions/download-artifact@v7
+        with:
+          name: r2-explorer-npm-package
+          path: packages/worker/
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: ${{ github.event.workflow_run.id }}
+
       - name: Setup node
         uses: actions/setup-node@v6
         with:
           node-version: '20.x'
           registry-url: 'https://registry.npmjs.org'
+
       - name: Setup R2-Explorer
         env:
           R2EXPLORER_WORKER_NAME: ${{ vars.R2EXPLORER_WORKER_NAME }}
@@ -25,8 +39,13 @@ jobs:
           R2EXPLORER_DOMAIN: ${{ vars.R2EXPLORER_DOMAIN }}
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
         run: node packages/github-action/prepareDeploy.js
-      - name: Get latest version
-        run: cd packages/github-action && npm install && npm install --save r2-explorer@latest
+
+      - name: Install local package
+        run: |
+          cd packages/github-action
+          npm install
+          npm install ../worker/r2-explorer-*.tgz
+
       - name: Deploy
         uses: cloudflare/wrangler-action@v3
         with:
