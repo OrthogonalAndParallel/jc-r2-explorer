@@ -23,9 +23,18 @@ export async function dashboardRedirect(c: AppContext, next) {
 	}
 
 	const url = new URL(c.req.url);
+	const basePath = c.env.BASE_PATH || "";
 
-	if (!url.pathname.includes(".")) {
-		return c.env.ASSETS.fetch(new Request(url.origin));
+	// Strip base path prefix if configured
+	let pathname = url.pathname;
+	if (basePath && pathname.startsWith(basePath)) {
+		pathname = pathname.slice(basePath.length) || "/";
+	}
+
+	if (!pathname.includes(".")) {
+		// For SPA routes, fetch from ASSETS with stripped path
+		const assetUrl = new URL(pathname, url.origin);
+		return c.env.ASSETS.fetch(new Request(assetUrl));
 	}
 
 	await next();

@@ -38,6 +38,7 @@ export type ShareMetadata = {
 
 export type AppEnv = {
 	ASSETS: Fetcher;
+	BASE_PATH?: string;
 	[key: string]: R2Bucket;
 };
 export type AppVariables = {

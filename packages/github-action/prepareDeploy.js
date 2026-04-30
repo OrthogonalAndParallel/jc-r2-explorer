@@ -6,6 +6,7 @@ let R2EXPLORER_WORKER_NAME = process.env.R2EXPLORER_WORKER_NAME;
 const R2EXPLORER_BUCKETS = process.env.R2EXPLORER_BUCKETS;
 const R2EXPLORER_CONFIG = process.env.R2EXPLORER_CONFIG;
 const R2EXPLORER_DOMAIN = process.env.R2EXPLORER_DOMAIN;
+const R2EXPLORER_BASE_PATH = process.env.R2EXPLORER_BASE_PATH;
 const CF_API_TOKEN = process.env.CF_API_TOKEN;
 
 let baseDir = __dirname;
@@ -51,6 +52,13 @@ routes = [
 } else {
 	wranglerConfig += `
 workers_dev = true
+`;
+}
+
+if (R2EXPLORER_BASE_PATH) {
+	wranglerConfig += `
+[vars]
+BASE_PATH = "${R2EXPLORER_BASE_PATH}"
 `;
 }
 
