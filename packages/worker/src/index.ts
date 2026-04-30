@@ -60,6 +60,28 @@ export function R2Explorer(config?: R2ExplorerConfig) {
 	}
 
 	const app = new Hono<{ Bindings: AppEnv; Variables: AppVariables }>();
+
+	// Strip basePath prefix from all requests
+	app.use("*", async (c, next) => {
+		const basePath = config.basePath || "";
+		const url = new URL(c.req.url);
+
+		if (basePath && url.pathname.startsWith(basePath)) {
+			const newPath = url.pathname.slice(basePath.length) || "/";
+			const newUrl = new URL(newPath + url.search, url.origin);
+			// Rewrite the request path by creating a new request
+			const newRequest = new Request(newUrl, {
+				method: c.req.method,
+				headers: c.req.raw.headers,
+				body: c.req.raw.body,
+				redirect: c.req.raw.redirect,
+			});
+			return app.fetch(newRequest, c.env, c.executionCtx);
+		}
+
+		await next();
+	});
+
 	app.use("*", async (c, next) => {
 		c.set("config", config);
 		await next();

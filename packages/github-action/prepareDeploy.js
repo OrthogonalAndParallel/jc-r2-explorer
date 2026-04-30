@@ -39,16 +39,35 @@ let wranglerConfig = `
 name = "${R2EXPLORER_WORKER_NAME}"
 compatibility_date = "2024-11-06"
 main = "src/index.ts"
-assets = { directory = "node_modules/r2-explorer/dashboard", binding = "ASSETS", html_handling = "auto-trailing-slash", not_found_handling = "single-page-application", run_worker_first = ["/api/*", "/share/*"] }
+`;
+
+// Configure run_worker_first based on BASE_PATH
+const runWorkerFirstPatterns = ["\"/api/*\"", "\"/share/*\""];
+if (R2EXPLORER_BASE_PATH) {
+	runWorkerFirstPatterns.push(`"${R2EXPLORER_BASE_PATH}/*"`);
+}
+
+wranglerConfig += `assets = { directory = "node_modules/r2-explorer/dashboard", binding = "ASSETS", html_handling = "auto-trailing-slash", not_found_handling = "single-page-application", run_worker_first = [${runWorkerFirstPatterns.join(", ")}] }
 `;
 
 if (R2EXPLORER_DOMAIN) {
-	wranglerConfig += `
+	if (R2EXPLORER_BASE_PATH) {
+		// Path-level route (e.g., jczen.dpdns.org/explorer/*)
+		wranglerConfig += `
+workers_dev = false
+routes = [
+  { pattern = "${R2EXPLORER_DOMAIN}${R2EXPLORER_BASE_PATH}/*" }
+]
+`;
+	} else {
+		// Full domain binding
+		wranglerConfig += `
 workers_dev = false
 routes = [
   { pattern = "${R2EXPLORER_DOMAIN}", custom_domain = true }
 ]
 `;
+	}
 } else {
 	wranglerConfig += `
 workers_dev = true
@@ -93,16 +112,32 @@ if (!fs.existsSync(`${baseDir}/src/`)) {
 	fs.mkdirSync(`${baseDir}/src/`);
 }
 
+// Merge basePath into R2Explorer config
+let userConfig = {};
+if (R2EXPLORER_CONFIG) {
+	try {
+		userConfig = JSON.parse(R2EXPLORER_CONFIG);
+	} catch (e) {
+		console.error("R2EXPLORER_CONFIG is not valid JSON!");
+		process.exit(1);
+	}
+}
+if (R2EXPLORER_BASE_PATH) {
+	userConfig.basePath = R2EXPLORER_BASE_PATH;
+}
+
+const finalConfig = JSON.stringify(userConfig);
+
 console.log(`
 import { R2Explorer } from "r2-explorer";
 
-export default R2Explorer(${R2EXPLORER_CONFIG});
+export default R2Explorer(${finalConfig});
 `);
 fs.writeFileSync(
 	`${baseDir}/src/index.ts`,
 	`
 import { R2Explorer } from "r2-explorer";
 
-export default R2Explorer(${R2EXPLORER_CONFIG});
+export default R2Explorer(${finalConfig});
 `,
 );

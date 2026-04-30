@@ -55,13 +55,13 @@ describe("CopyObject (POST /api/buckets/:bucket/copy)", () => {
 		// Verify copy exists
 		const copyObj = await MY_TEST_BUCKET_1.get(destKey);
 		expect(copyObj).not.toBeNull();
-		const copyContent = await copyObj!.text();
+		const copyContent = await copyObj?.text();
 		expect(copyContent).toBe(SOURCE_CONTENT);
 
 		// Verify original still exists
 		const sourceObj = await MY_TEST_BUCKET_1.get(SOURCE_KEY);
 		expect(sourceObj).not.toBeNull();
-		const sourceContent = await sourceObj!.text();
+		const sourceContent = await sourceObj?.text();
 		expect(sourceContent).toBe(SOURCE_CONTENT);
 	});
 

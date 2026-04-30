@@ -15,6 +15,7 @@ export type R2ExplorerConfig = {
 	cors?: boolean;
 	cfAccessTeamName?: string;
 	dashboardUrl?: string;
+	basePath?: string;
 	emailRouting?:
 		| {
 				targetBucket: string;

@@ -22,20 +22,13 @@ export async function dashboardRedirect(c: AppContext, next) {
 		);
 	}
 
+	// API and share routes are handled by other routes in index.ts
 	const url = new URL(c.req.url);
-	const basePath = c.env.BASE_PATH || "";
-
-	// Strip base path prefix if configured
-	let pathname = url.pathname;
-	if (basePath && pathname.startsWith(basePath)) {
-		pathname = pathname.slice(basePath.length) || "/";
+	if (url.pathname.startsWith("/api/") || url.pathname.startsWith("/share/")) {
+		await next();
+		return;
 	}
 
-	if (!pathname.includes(".")) {
-		// For SPA routes, fetch from ASSETS with stripped path
-		const assetUrl = new URL(pathname, url.origin);
-		return c.env.ASSETS.fetch(new Request(assetUrl));
-	}
-
-	await next();
+	// All other requests fetch from ASSETS
+	return c.env.ASSETS.fetch(c.req.raw);
 }

@@ -120,8 +120,13 @@ describe("Dashboard Endpoints", () => {
 			expect(await response.text()).toBe("SPA Route Content");
 		});
 
-		it("path w/ dot, ASSETS defined: should call next() then 404", async () => {
-			const mockAssets = { fetch: vi.fn() }; // fetch should not be called
+		it("path w/ dot, ASSETS defined: should call ASSETS.fetch for static assets", async () => {
+			const mockAssetsResponse = new Response("JS File Content", {
+				status: 200,
+			});
+			const mockAssets = {
+				fetch: vi.fn().mockResolvedValue(mockAssetsResponse),
+			};
 			const app = createTestApp();
 			const request = createTestRequest("/some/file.js");
 			const currentEnv = { ...testEnv, ASSETS: mockAssets as any };
@@ -131,8 +136,9 @@ describe("Dashboard Endpoints", () => {
 				currentEnv,
 				createExecutionContext(),
 			);
-			expect(mockAssets.fetch).not.toHaveBeenCalled();
-			expect(response.status).toBe(404); // Hono's default for unhandled routes after next()
+			expect(mockAssets.fetch).toHaveBeenCalledTimes(1);
+			expect(response.status).toBe(200);
+			expect(await response.text()).toBe("JS File Content");
 		});
 	});
 });
