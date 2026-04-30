@@ -35,3 +35,9 @@ pnpm --filter r2-explorer-dashboard dev
 ```
 
 这会启动 Quasar dev server（默认端口 9000），自动打开浏览器。
+
+
+**测试**
+```shell
+pnpm test:e2e
+```

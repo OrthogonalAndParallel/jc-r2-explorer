@@ -11,7 +11,7 @@ export default defineConfig({
 	workers: 1,
 	reporter: "list",
 	use: {
-		baseURL: "http://localhost:8787",
+		baseURL: "http://localhost:8787/explorer",
 		screenshot: "only-on-failure",
 		trace: "on-first-retry",
 	},
