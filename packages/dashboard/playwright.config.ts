@@ -10,6 +10,10 @@ export default defineConfig({
 	retries: process.env.CI ? 1 : 0,
 	workers: 1,
 	reporter: "list",
+	timeout: 30_000,
+	expect: {
+		timeout: 10_000,
+	},
 	use: {
 		baseURL: "http://localhost:8787/explorer",
 		screenshot: "only-on-failure",
@@ -24,9 +28,10 @@ export default defineConfig({
 	webServer: {
 		command:
 			"npx wrangler dev --port 8787 -c packages/worker/dev/wrangler-e2e.toml",
-		url: "http://localhost:8787",
+		url: "http://localhost:8787/explorer/",
 		cwd: rootDir,
 		reuseExistingServer: false,
-		timeout: 30_000,
+		timeout: 60_000,
+		stdout: process.env.CI ? "pipe" : "inherit",
 	},
 });
